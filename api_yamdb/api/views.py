@@ -1,3 +1,11 @@
+from api.filters import TitleFilter
+from api.permissions import (IsAdmin, IsAdminModeratorOwnerOrReadOnly,
+                             IsAdminOrReadOnly)
+from api.serializers import (CategorySerializer, CommentSerializer,
+                             GenreSerializer, GetTokenSerializer,
+                             RegistrationSerializer, ReviewSerializer,
+                             TitleDetailSerializer, TitleSerializer,
+                             UserSerializer)
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db import IntegrityError
@@ -10,18 +18,9 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-
-from api.filters import TitleFilter
-from api.permissions import (
-    IsAdmin, IsAdminModeratorOwnerOrReadOnly, IsAdminOrReadOnly
-)
-from api.serializers import (
-    CategorySerializer, CommentSerializer, GenreSerializer, GetTokenSerializer,
-    RegistrationSerializer, ReviewSerializer, TitleDetailSerializer,
-    TitleSerializer, UserSerializer
-)
-from api_yamdb.settings import EMAIL_ADRESS
 from reviews.models import Category, Genre, Review, Title, User
+
+from api_yamdb.settings import EMAIL_ADRESS
 
 
 class UserViewSet(viewsets.ModelViewSet):
